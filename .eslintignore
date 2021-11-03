@@ -1,0 +1,10 @@
+# Ignore artifacts:
+.expo/
+__tests__/
+android/
+ios/
+node_modules/
+build/
+
+# Ignore all HTML files:
+*.html

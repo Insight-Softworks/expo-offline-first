@@ -3,9 +3,10 @@
     "name": "expo-offline-first",
     "slug": "expo-offline-first",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "assetBundlePatterns": ["**/*"],
+    "updates": {
+      "fallbacktocachetimeout": 0
+    }
   },
   "name": "expo-offline-first"
 }
