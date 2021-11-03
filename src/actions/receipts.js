@@ -19,12 +19,13 @@ const getReceipts = () => ({
   },
 });
 
-const createReceipt = ({ title, description, amount }) => ({
+const createReceipt = ({ title, description, amount, createdAt }) => ({
   type: 'CREATE_RECEIPT_REQUEST',
   payload: {
     title,
     description,
     amount,
+    createdAt,
   },
   meta: {
     offline: {
@@ -37,12 +38,12 @@ const createReceipt = ({ title, description, amount }) => ({
       // action to dispatch when effect succeeds:
       commit: {
         type: 'CREATE_RECEIPT_COMMIT',
-        meta: { title, description, amount },
+        meta: { title, description, amount, createdAt },
       },
       // action to dispatch if network action fails permanently:
       rollback: {
         type: 'CREATE_RECEIPT_ROLLBACK',
-        meta: { title, description, amount },
+        meta: { title, description, amount, createdAt },
       },
     },
   },

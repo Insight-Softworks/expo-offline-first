@@ -16,6 +16,7 @@ function CreateReceipt(props) {
       title: `Offline Receipt ${counter}`,
       description: 'Created Offline',
       amount: 500,
+      createdAt: new Date().toString(),
     });
     setCounter(counter + 1);
   };
@@ -25,7 +26,7 @@ function CreateReceipt(props) {
     <ScrollView style={{ paddingVertical: 50 }}>
       <Button onPress={handleCreateReceipt} title="Create Receipt" />
       {receipts.map((receipt) => (
-        <Text key={receipt?.id}>
+        <Text key={receipt?.id ?? receipt?.createdAt}>
           {JSON.stringify(receipt)}
           {'\n'}
           {'\n'}
