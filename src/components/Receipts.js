@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, Text, Button } from 'react-native';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { getReceipts, createReceipt } from '../actions/receipts';
+import useReceiptsStore from '../hooks/receiptsStore';
 
-function CreateReceipt(props) {
+const Receipts = () => {
+  const { getReceipts: receipts, getReceiptsRequest, createReceiptRequest } = useReceiptsStore();
   const [counter, setCounter] = useState(1);
 
   useEffect(() => {
-    props.onGetReceipts();
+    getReceiptsRequest();
   }, []);
 
   const handleCreateReceipt = () => {
-    props.onCreateReceipt({
+    createReceiptRequest({
       title: `Offline Receipt ${counter}`,
       description: 'Created Offline',
       amount: 500,
@@ -21,7 +20,6 @@ function CreateReceipt(props) {
     setCounter(counter + 1);
   };
 
-  const { receipts } = props;
   return (
     <ScrollView style={{ paddingVertical: 50 }}>
       <Button onPress={handleCreateReceipt} title="Create Receipt" />
@@ -34,22 +32,6 @@ function CreateReceipt(props) {
       ))}
     </ScrollView>
   );
-}
-
-const mapStateToProps = (state) => {
-  const { receipts } = state.receipts;
-  return {
-    receipts,
-  };
 };
 
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    {
-      onGetReceipts: getReceipts,
-      onCreateReceipt: createReceipt,
-    },
-    dispatch
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps)(CreateReceipt);
+export default Receipts;
