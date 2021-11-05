@@ -15,7 +15,7 @@ const Receipts = () => {
       title: `Offline Receipt ${counter}`,
       description: 'Created Offline',
       amount: 500,
-      createdAt: new Date().toString(),
+      createdAt: new Date().valueOf(),
     });
     setCounter(counter + 1);
   };
